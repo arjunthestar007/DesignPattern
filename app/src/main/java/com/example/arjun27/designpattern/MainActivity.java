@@ -10,28 +10,38 @@ public class MainActivity extends AppCompatActivity {
     TextView textView1,textView2,textView3;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView1=findViewById(R.id.textView1);
         textView2=findViewById(R.id.textView2);
         textView3=findViewById(R.id.textView3);
 
-        BreadFactory breadFactory = new BreadFactory();
-        Bread bag=breadFactory.getBread("BAG");
-        Bread bri=breadFactory.getBread("BRI");
-        Bread rol=breadFactory.getBread("ROL");
+//        BreadFactory breadFactory = new BreadFactory();
+//        Bread bag=breadFactory.getBread("BAG");
+//        Bread bri=breadFactory.getBread("BRI");
+//        Bread rol=breadFactory.getBread("ROL");
+//
+//        textView1.setText(new StringBuilder()
+//                .append(bag.name()).append(bag.calories())
+//                .toString());
+//
+//        textView2.setText(new StringBuilder()
+//                .append(bri.name()).append(bri.calories())
+//                .toString());
+//
+//        textView3.setText(new StringBuilder()
+//                .append(rol.name()).append(rol.calories())
+//                .toString());
 
-        textView1.setText(new StringBuilder()
-                .append(bag.name()).append(bag.calories())
-                .toString());
+        AbstractFactory fillingFactory = FactoryGenerator.getFactory("FIL");
+        fillingFactory.getfilling("CHE").calories();
+        fillingFactory.getbread("BRI").name();
+        fillingFactory.getDrink("TEA").brand();
 
-        textView2.setText(new StringBuilder()
-                .append(bri.name()).append(bri.calories())
-                .toString());
-
-        textView3.setText(new StringBuilder()
-                .append(rol.name()).append(rol.calories())
-                .toString());
+        textView1.setText(fillingFactory.getfilling("CHE").calories());
+        textView2.setText(fillingFactory.getbread("BRI").name());
+        textView3.setText(fillingFactory.getDrink("TEA").brand());
     }
 }
