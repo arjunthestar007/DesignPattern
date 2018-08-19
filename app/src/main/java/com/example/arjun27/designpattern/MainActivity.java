@@ -1,7 +1,7 @@
 package com.example.arjun27.designpattern;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 // generates objects to represent the different types of bread our sandwich builder app might offer
@@ -18,30 +18,20 @@ public class MainActivity extends AppCompatActivity {
         textView2=findViewById(R.id.textView2);
         textView3=findViewById(R.id.textView3);
 
-//        BreadFactory breadFactory = new BreadFactory();
-//        Bread bag=breadFactory.getBread("BAG");
-//        Bread bri=breadFactory.getBread("BRI");
-//        Bread rol=breadFactory.getBread("ROL");
-//
-//        textView1.setText(new StringBuilder()
-//                .append(bag.name()).append(bag.calories())
-//                .toString());
-//
-//        textView2.setText(new StringBuilder()
-//                .append(bri.name()).append(bri.calories())
-//                .toString());
-//
-//        textView3.setText(new StringBuilder()
-//                .append(rol.name()).append(rol.calories())
-//                .toString());
+        // Build a customized sandwich
+        SandwichBuilder builder = new SandwichBuilder();
+        Sandwich custom = new Sandwich();
+// Simulate user selections
+        custom = builder.build(custom, new Bagel());
+        custom = builder.build(custom, new SmokedSalmon());
+        custom.getSandwich();
+        custom.getCalories();
+// Build a ready made sandwich
+        Sandwich offTheShelf = SandwichBuilder.readyMade();
+        offTheShelf.getSandwich();
+        offTheShelf.getCalories();
 
-        AbstractFactory fillingFactory = FactoryGenerator.getFactory("FIL");
-        fillingFactory.getfilling("CHE").calories();
-        fillingFactory.getbread("BRI").name();
-        fillingFactory.getDrink("TEA").brand();
 
-        textView1.setText(fillingFactory.getfilling("CHE").calories());
-        textView2.setText(fillingFactory.getbread("BRI").name());
-        textView3.setText(fillingFactory.getDrink("TEA").brand());
+
     }
 }
