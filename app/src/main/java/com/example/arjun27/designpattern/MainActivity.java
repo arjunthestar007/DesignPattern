@@ -1,34 +1,47 @@
 package com.example.arjun27.designpattern;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.widget.TextView;
 
 // generates objects to represent the different types of bread our sandwich builder app might offer
 
 public class MainActivity extends AppCompatActivity {
-    TextView textView1, textView2, textView3;
+    TextView textView1,textView2,textView3;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textView1=findViewById(R.id.textView1);
+        textView2=findViewById(R.id.textView2);
+        textView3=findViewById(R.id.textView3);
 
-        SandwichBuilder builder = new SandwichBuilder();
-        Sandwich custom = new Sandwich();
+//        BreadFactory breadFactory = new BreadFactory();
+//        Bread bag=breadFactory.getBread("BAG");
+//        Bread bri=breadFactory.getBread("BRI");
+//        Bread rol=breadFactory.getBread("ROL");
+//
+//        textView1.setText(new StringBuilder()
+//                .append(bag.name()).append(bag.calories())
+//                .toString());
+//
+//        textView2.setText(new StringBuilder()
+//                .append(bri.name()).append(bri.calories())
+//                .toString());
+//
+//        textView3.setText(new StringBuilder()
+//                .append(rol.name()).append(rol.calories())
+//                .toString());
 
-        // Simulate user selections
-        custom=builder.build(custom,new Bagel());
-        custom=builder.build(custom,new SmokedSalmon());
-        custom.getCalories();
-        custom.getSandwich();
+        AbstractFactory fillingFactory = FactoryGenerator.getFactory("FIL");
+        fillingFactory.getfilling("CHE").calories();
+        fillingFactory.getbread("BRI").name();
+        fillingFactory.getDrink("TEA").brand();
 
-
-        // Build a ready made sandwich
-        Sandwich offTheShelf = SandwichBuilder.readyMade();
-        offTheShelf.getSandwich();
-        offTheShelf.getCalories();
-
-
+        textView1.setText(fillingFactory.getfilling("CHE").calories());
+        textView2.setText(fillingFactory.getbread("BRI").name());
+        textView3.setText(fillingFactory.getDrink("TEA").brand());
     }
 }

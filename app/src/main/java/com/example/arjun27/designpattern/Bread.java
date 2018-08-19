@@ -1,11 +1,8 @@
 package com.example.arjun27.designpattern;
 
-public abstract class Bread implements Ingredient {
+public interface Bread {
 
-    @Override
-    public abstract String name();
-
-    @Override
-    public abstract int calories() ;
+     String name();
+     String calories();
 
 }
