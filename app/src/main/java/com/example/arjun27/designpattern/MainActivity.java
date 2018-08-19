@@ -18,18 +18,9 @@ public class MainActivity extends AppCompatActivity {
         textView2=findViewById(R.id.textView2);
         textView3=findViewById(R.id.textView3);
 
-        // Build a customized sandwich
-        SandwichBuilder builder = new SandwichBuilder();
-        Sandwich custom = new Sandwich();
-// Simulate user selections
-        custom = builder.build(custom, new Bagel());
-        custom = builder.build(custom, new SmokedSalmon());
-        custom.getSandwich();
-        custom.getCalories();
-// Build a ready made sandwich
-        Sandwich offTheShelf = SandwichBuilder.readyMade();
-        offTheShelf.getSandwich();
-        offTheShelf.getCalories();
+        CurrentUser currentUser= CurrentUser.getCurrentUser();
+        currentUser.setName("arjun");
+        currentUser.getName();
 
 
 
